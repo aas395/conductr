@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import './Content.css';
+import './Block.css';
 
-class Content extends Component {
+
+class Block extends Component {
   render() {
     return (
       <div className="Block">
-        This is Content
+        This is a Block
 
       </div>
     );
   }
 }
 
-export default Content;
+export default Block;

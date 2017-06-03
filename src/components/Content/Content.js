@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './Content.css';
+import Row from '../Row/Row';
 
 class Content extends Component {
   render() {
     return (
       <div className="Content">
-        This is Content
+        <Row />
 
       </div>
     );
