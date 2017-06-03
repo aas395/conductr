@@ -1,0 +1,12 @@
+.Block {
+  grid-column: span 1;
+}
+
+.Block:nth-of-type(even){
+  background: gray;
+}
+
+.Block:nth-of-type(odd){
+  background: white;
+  border: 1px solid black;
+}
