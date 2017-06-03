@@ -1,5 +1,15 @@
 .NavBar {
-  background-color: #777;
-  height: 50px;
-  color: white;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background-color: transparent;
+}
+.NavBar .navbar-light .navbar-nav .nav-link {
+  color: #fbfbfb;
+  padding: 15px 50px;
+  text-transform: uppercase;
+}
+.NavBar .navbar-light .navbar-nav .nav-link.active {
+  color: #fbfbfb;
+  border-bottom: 1px solid #fbfbfb;
 }
