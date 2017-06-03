@@ -1,3 +1,14 @@
 .Row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   grid-column: 1 / span 12;
+  text-align: center;
+}
+
+.Row:nth-of-type(even){
+  background: lightblue;
+}
+
+.Row:nth-of-type(odd){
+  background: lightgreen;
 }
