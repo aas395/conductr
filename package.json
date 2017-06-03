@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "routes": "^2.1.0",
+    "watson-speech": "^0.33.1"
   },
   "devDependencies": {
     "autoprefixer": "7.1.0",
