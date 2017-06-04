@@ -31,7 +31,7 @@ class App extends Component {
       .then((response) => {
         switch (response.intents[0].intent) {
           case "select":
-            this.select(11, 'baecfacb-a2c8-4762-bff4-31e485695e39');
+            // this.select(11, 'baecfacb-a2c8-4762-bff4-31e485695e39');
             break;
           // case "add":
           //   console.log(inputArr[0]+"ed: "+inputArr[inputArr.length - 1])
