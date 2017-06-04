@@ -24,7 +24,6 @@ class Content extends Component {
 
 
   addRow() {
-    console.log("adding row")
     this.setState({components: this.state.components.concat({props: "props"})});
     this.props.resetActions()
   }

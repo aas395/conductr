@@ -107,6 +107,19 @@ class App extends Component {
             default:console.log("nope!")
           }
         }
+
+        var output = response.output.text;
+          
+        if (typeof output[0] != 'undefined') {
+            var totalOutput = "";
+            for(var x=0; x<output.length; x++){ 
+                var outputForConsole = output[x];
+                totalOutput = totalOutput + " " + outputForConsole;
+            }
+            document.getElementById('response').value = totalOutput;
+        }
+
+
       })
       .catch(function(error) {
         console.log(error);
