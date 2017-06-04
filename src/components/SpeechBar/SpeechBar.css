@@ -1,8 +1,7 @@
 .SpeechBar {
   position: fixed;
   bottom: 5px;
-  min-height: 100px;
-  line-height: 120px;
+  height: 75px;
   vertical-align: middle;
   text-align: center;
   font-size: 1.2em;
@@ -18,7 +17,7 @@
   width: 100vw;
   display: block;
   text-align: center;
-  width: 100vw;
+  height: 100%;
 }
 
 .SpeechBar .talk {
@@ -44,4 +43,6 @@
   position:absolute;
   bottom: 12px;
   left: 12px;
-  height: 50px;}
+  height: 50px;
+  line-height: 1;
+}
