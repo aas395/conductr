@@ -18,14 +18,27 @@ class Row extends Component {
     this.setState({id: this.props.id})
   }
 
-  addBlock(e) {
-    this.setState({components: this.state.components.concat({props: "props"})});
+  componentDidUpdate(){
+    if (this.props.selected.toLowerCase() === this.state.id) {
+      this.props.actions.addImg ? this.addImageBlock() : null
+      this.props.actions.addText ? this.addTextBlock() : null
+      }
+    }
+
+  addImageBlock() {
+    this.setState({components: this.state.components.concat({props: "image"})});
+  }
+
+  addTextBlock() {
+    this.setState({components: this.state.components.concat({props: "text"})});
   }
 
   render() {
+    let className = "Row"
+    if (this.state.id.toUpperCase() == this.props.selected.toUpperCase()) {className = className +" selected"}
+
     return (
-      <div className="Row">
-        <button onClick={this.addBlock.bind(this)}>Add Block</button>
+      <div className={className}>
         {this.state.components.map((component, i) => <Block key={i} data={component.props} parentId={this.state.id} id={this.state.id  +(i+1)}/>)}
       </div>
     );

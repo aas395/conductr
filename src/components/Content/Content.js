@@ -6,15 +6,28 @@ class Content extends Component {
   constructor(){
     super();
     this.state = {
-      id: "Body",
+      id: "body",
+      addRow: false,
       components: [
       ]
     }
   }
 
 
-  addBlock(e) {
+
+  componentDidUpdate(){
+    // this.setState({addRow: this.props.actions.addRow})
+    if (this.props.selected.toLowerCase() === this.state.id && this.props.actions.addRow) {
+      this.addRow()
+      }
+
+    }
+
+
+  addRow() {
+    console.log("adding row")
     this.setState({components: this.state.components.concat({props: "props"})});
+    this.props.resetActions()
   }
 
   render() {
@@ -23,8 +36,20 @@ class Content extends Component {
 
     return (
       <div className={className}>
-        <button onClick={this.addBlock.bind(this)}>Add Row</button>
-        {this.state.components.map((component, i) => <Row key={i} data={component.props} parentId={this.state.id} id={this.state.id +" "+ (i+1)} />)}
+        {this.state.components.map((component, i) => {
+          return(
+            <Row
+              key={i}
+              data={component.props}
+              parentId={this.state.id}
+              id={this.state.id +" "+ (i+1)}
+              selected={this.props.selected}
+              actions={this.props.actions}
+              resetActions={this.props.resetActions}
+            />
+          )
+        })
+      }
         {this.props.showLabels ? <div className="label">{this.state.id}</div> : null}
       </div>
     );
