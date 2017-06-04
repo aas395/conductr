@@ -31,7 +31,6 @@
 
 .b-img {
     height: 400px;
-    background: url(../../assets/images/block-img-demo.jpg) no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

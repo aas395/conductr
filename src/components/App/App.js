@@ -22,27 +22,37 @@ class App extends Component {
   handleTalk = () => {
     var input = document.querySelector("#response").value.toLowerCase();
     var inputArr = input.split(' ');
-    switch (inputArr[0]) {
-      case "select":
-        this.setState({selected: inputArr[1].slice(0, -1)})
-        break;
-      case "add":
-        console.log(inputArr[0]+"ed: "+inputArr[inputArr.length - 1])
-        break;
-      case "remove":
-        console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
-        break;
-      default:console.log("nope!")
-    }
+    var myRequest = new URL('http://localhost:3001/api/conversation?message=' + input);
 
-  }
+    fetch(myRequest)
+      .then((response) => {
+        return response.text();
+      })
+      .then((response) => {
+        switch (response.intents[0].intent) {
+          case "select":
+            this.select(11, 'baecfacb-a2c8-4762-bff4-31e485695e39');
+            break;
+          // case "add":
+          //   console.log(inputArr[0]+"ed: "+inputArr[inputArr.length - 1])
+          //   break;
+          // case "remove":
+          //   console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
+          //   break;
+          default:console.log("nope!")
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
 
   componentDidMount(){
     registerServiceWorker();
   }
 
-  select(id){
-    this.setState({selected: id})
+  select(id, conversationId){
+    this.setState({selected: id, conversationId: conversationId})
   }
 
 
@@ -60,49 +70,46 @@ class App extends Component {
     );
   }
 
-    onTalkClick () {
+  onTalkClick () {
   	var myHeaders = new Headers();
   	myHeaders.append('Host', 'localhost:3001');
 
-  	var myInit = { method: 'GET',
-  	               headers: myHeaders,
-  	               mode: 'cors',
-  	               cache: 'default'
-  	           };
+  	var myInit = { 
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors',
+  	   cache: 'default'
+  	};
 
   	var myRequest = new Request('http://localhost:3001/api/token', myInit);
 
-        fetch(myRequest)
-          .then((response) => {
-            return response.text();
-          }).then((token) => {
-            var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-              token: token,
-      //        continuous: false, // no longer supported
-              outputElement: '#response' // CSS selector or DOM Element
-            });
+    fetch(myRequest)
+      .then((response) => {
+        return response.text();
+      })
+      .then((token) => {
 
-            stream.on('data', data => {
-              if(data.results[0] && data.results[0].final) {
-                stream.stop();
-                this.handleTalk()
-                console.log('stop listening.');
-              }
-            });
+        var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+          token: token,
+          outputElement: '#response' // CSS selector or DOM Element
+        });
 
-            stream.on('error', function(err) {
-              console.log(err);
-            });
+        stream.on('data', data => {
+          if(data.results[0] && data.results[0].final) {
+            stream.stop();
+            this.handleTalk();
+            console.log('stop listening.');
+          }
+        });
 
-          }).catch(function(error) {
-            console.log(error);
-          });
-      // };
-  }
+        stream.on('error', function(err) {
+          console.log(err);
+        });
 
-
-
-
+      }).catch(function(error) {
+        console.log(error);
+      });
+    }
 }
 
 export default App;

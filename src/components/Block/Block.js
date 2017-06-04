@@ -24,7 +24,6 @@ class Block extends Component {
       <div className="Block">
         <h1 className="b-title">Title</h1>
         <p className="b-paragraph">Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
-        <img className="b-img img-fluid"/>
       </div>
     );
   }
