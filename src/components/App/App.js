@@ -80,9 +80,7 @@ class App extends Component {
           switch (intent) {
             case "select":
               if(typeof entity != 'undefined') {
-
                 this.setState({selected: entity});
-                console.log(this.state);
               } else {
                 this.setState({selected: ''});
               }
@@ -91,7 +89,10 @@ class App extends Component {
               this.addElement(entity);
               break;
             case "addtext":
-              this.addElement(entity);
+              // this.state.blockValue.text = input;
+              break;
+            case "positive_reaction":
+              this.setState({blockValue: {text: input}});
               break;
             case "remove":
               // console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
@@ -104,11 +105,9 @@ class App extends Component {
             break;
             case "increasesize":
               actions.fontBigger = true
-              console.log("increase",this.state.actions)
             break;
             case "decreasesize":
               actions.fontSmaller = true
-              console.log("decrease",this.state.actions)
             break;
             default:console.log("nope!")
           }

@@ -16,7 +16,7 @@ class Content extends Component {
 
   componentDidUpdate(){
     // this.setState({addRow: this.props.actions.addRow})
-    if (this.props.selected.toLowerCase() === this.state.id && this.props.actions.addRow) {
+    if (this.props.selected.toLowerCase() === this.state.id.toLowerCase() && this.props.actions.addRow) {
       this.addRow()
       }
 

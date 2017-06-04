@@ -28,9 +28,9 @@ class Block extends Component {
     var font = parseInt(pStyle.fontSize)
 
     if (direction === "bigger") {
-      font = font + 2
+      font = font + 4
     } else {
-      font = font - 2
+      font = font - 4
     }
     pStyle.fontSize = font + "px"
     this.setState({pStyle})
