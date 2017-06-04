@@ -33,11 +33,14 @@ class App extends Component {
 
   handleTalk = () => {
 
-    var input = document.querySelector("#response").value.toLowerCase();
+    let input = document.querySelector("#response").value.toLowerCase();
     // fetch.(conversation)
     // .then(stuff => stuff.json)
     // .then(stuff => swtich stament to run based on result of stuff.intent)
 
+// <<<<<<< HEAD
+
+// =======
     var inputArr = input.split(' ');
 
     var conversationContext = this.state.conversationContext;
@@ -47,7 +50,7 @@ class App extends Component {
       var context = JSON.stringify(conversationContext);
       requestURL += '&context=' + escape(context);
     }
-    
+
     var myRequest = new URL(requestURL);
 
     fetch(myRequest)
@@ -58,23 +61,34 @@ class App extends Component {
         var response = JSON.parse(response);
         this.setState({conversationContext: response.context})
 
-        switch (response.intents[0].intent) {
+        var lastWord = inputArr[inputArr.length-1]
+        if (lastWord.indexOf(".") === lastWord[lastWord.length - 1]) {
+            lastWord = lastWord.substring(0, -1)
+            console.log(lastWord)
+        }
+        inputArr[inputArr.length-1] = lastWord //remove period
+
+        switch (inputArr[0]) {
           case "select":
-            // this.select(11, 'baecfacb-a2c8-4762-bff4-31e485695e39');
+            inputArr.shift()
+            let id = inputArr.join(" ")
+            this.setState({selected: id})
             break;
-          // case "add":
-          //   console.log(inputArr[0]+"ed: "+inputArr[inputArr.length - 1])
-          //   break;
-          // case "remove":
-          //   console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
-          //   break;
+          case "add":
+            console.log(inputArr[0]+"ed: "+ inputArr[1])
+            this.addElement(inputArr[1])
+            break;
+          case "remove":
+            console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
+            break;
           default:console.log("nope!")
         }
       })
       .catch(function(error) {
         console.log(error);
       });
-    }
+// >>>>>>> 5301ae6c9292d9b09c199311ea692ab35abfaa1a
+//
 
     // switch (inputArr[0]) {
     //   case "select":
@@ -90,7 +104,7 @@ class App extends Component {
     //   default:console.log("nope!")
     // }
 
-  // }
+  }
 
   resetActions(){
     let actions = this.state.actions
@@ -133,15 +147,35 @@ class App extends Component {
 
 
   render() {
+    let blockText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    let blockImg = "b-img";
     let className = "App"
     if (this.state.id.toUpperCase() === this.state.selected.toUpperCase()) {className = className +" selected"}
     return (
       <div className={className}>
-        <Header selected={this.state.selected} showLabels={this.state.showLabels}/>
-        <NavBar selected={this.state.selected} showLabels={this.state.showLabels}/>
-        <Content selected={this.state.selected} showLabels={this.state.showLabels} actions={this.state.actions} resetActions={this.resetActions.bind(this)}/>
+        <Header selected={this.state.selected}
+          showLabels={this.state.showLabels}
+          actions={this.state.actions}
+          resetActions={this.resetActions.bind(this)}/>
 
-        <SpeechBar select={this.select.bind(this)} onTalkClick={this.onTalkClick.bind(this)} handleTalk={this.handleTalk.bind(this)}/>
+        <NavBar selected={this.state.selected}
+          showLabels={this.state.showLabels}
+          actions={this.state.actions}
+          resetActions={this.resetActions.bind(this)}/>
+
+        <Content
+          selected={this.state.selected}
+          showLabels={this.state.showLabels}
+          actions={this.state.actions}
+          resetActions={this.resetActions.bind(this)}
+          blockImg={blockImg}
+          blockText={blockText}
+        />
+
+        <SpeechBar
+          select={this.select.bind(this)}
+          onTalkClick={this.onTalkClick.bind(this)}
+          handleTalk={this.handleTalk.bind(this)}/>
       </div>
     );
   }
@@ -150,7 +184,7 @@ class App extends Component {
   	var myHeaders = new Headers();
   	myHeaders.append('Host', 'localhost:3001');
 
-  	var myInit = { 
+  	var myInit = {
       method: 'GET',
       headers: myHeaders,
       mode: 'cors',

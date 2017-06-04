@@ -33,9 +33,12 @@
   top: -40px;
   margin-left: -20px;
   outline: none;
+  transition: .25s background-color;
 }
 .SpeechBar .talk:hover {
   background-color: #32D0B6;
+  
+  cursor: pointer;
 }
 .SpeechBar .talk.recording {
   background-color: #32D0B6;
