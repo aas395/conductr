@@ -10,7 +10,7 @@ class App extends Component {
     super();
     this.state = {
       id: "MAIN",
-      showLabels: false,
+      showLabels: true,
       isSelected: true,
       selected: "Main"
     }
