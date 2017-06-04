@@ -4,7 +4,7 @@ import WatsonSpeech from 'watson-speech';
 import './App.css';
 import Header from './../Header/Header';
 import Content from './../Content/Content';
-import NavBar from './../NavBar/NavBar';
+// import NavBar from './../NavBar/NavBar';
 import SpeechBar from './../SpeechBar/SpeechBar';
 
 class App extends Component {
@@ -154,11 +154,6 @@ class App extends Component {
     return (
       <div className={className}>
         <Header selected={this.state.selected}
-          showLabels={this.state.showLabels}
-          actions={this.state.actions}
-          resetActions={this.resetActions.bind(this)}/>
-
-        <NavBar selected={this.state.selected}
           showLabels={this.state.showLabels}
           actions={this.state.actions}
           resetActions={this.resetActions.bind(this)}/>
