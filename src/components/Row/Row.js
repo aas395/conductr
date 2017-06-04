@@ -20,7 +20,7 @@ class Row extends Component {
       id: this.props.id,
       components: this.state.components.concat({props: {
         type: "text",
-        value: this.props.blockText}
+        value: this.props.blockValue.text}
       })
     })
 
@@ -37,7 +37,7 @@ class Row extends Component {
     this.setState({components: this.state.components.concat({
       props: {
         type: "image",
-        value: this.props.blockImg}
+        value: this.props.blockValue.image}
     })
   });
     this.props.resetActions()
@@ -46,10 +46,9 @@ class Row extends Component {
   addTextBlock() {
     this.setState({components: this.state.components.concat({props: {
       type: "text",
-      value: this.props.blockText}
+      value: this.props.blockValue.text}
     })
   });
-  debugger;
     this.props.resetActions()
   }
 
