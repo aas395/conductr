@@ -13,21 +13,40 @@ class App extends Component {
     this.state = {
       id: "MAIN",
       showLabels: false,
-      isSelected: true,
-      selected: "Main"
+      selected: "Main",
+      actions: {
+        addRow: false,
+        addImg: false,
+        addText: false,
+        moveUpLeft: false,
+        moveDownRight: false,
+        makeBig: false,
+        makeSmall: false,
+        fontBigger: false,
+        fontSmaller: false,
+        delete: false
+      }
     }
     this.onTalkClick = this.onTalkClick.bind(this)
   }
 
   handleTalk = () => {
+
     var input = document.querySelector("#response").value.toLowerCase();
+    // fetch.(conversation)
+    // .then(stuff => stuff.json)
+    // .then(stuff => swtich stament to run based on result of stuff.intent)
+
     var inputArr = input.split(' ');
+
+
     switch (inputArr[0]) {
       case "select":
         this.setState({selected: inputArr[1].slice(0, -1)})
         break;
       case "add":
-        console.log(inputArr[0]+"ed: "+inputArr[inputArr.length - 1])
+        console.log(inputArr[0]+"ed: "+ inputArr[1].slice(0, -1))
+        this.addElement(inputArr[1].slice(0, -1))
         break;
       case "remove":
         console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
@@ -35,6 +54,37 @@ class App extends Component {
       default:console.log("nope!")
     }
 
+  }
+
+  resetActions(){
+    let actions = this.state.actions
+
+    Object.keys(actions).map(function(key, index) {
+           actions[key] = false;
+        });
+    this.setState({actions})
+    console.log("reset", this.state.actions)
+  }
+
+  addElement (thing) {
+    let actions = this.state.actions
+
+    switch (thing.toLowerCase()) {
+      case "row":
+        actions.addRow = true
+      break;
+      case "image":
+        actions.addImg = true
+      break;
+      case "text":
+        actions.addText = true
+      break;
+      default:
+
+    }
+
+    this.setState({actions})
+    console.log(this.state.actions)
   }
 
   componentDidMount(){
@@ -53,9 +103,9 @@ class App extends Component {
       <div className={className}>
         <Header selected={this.state.selected} showLabels={this.state.showLabels}/>
         <NavBar selected={this.state.selected} showLabels={this.state.showLabels}/>
-        <Content selected={this.state.selected} showLabels={this.state.showLabels}/>
+        <Content selected={this.state.selected} showLabels={this.state.showLabels} actions={this.state.actions} resetActions={this.resetActions.bind(this)}/>
 
-        <SpeechBar select={this.select.bind(this)} onTalkClick={this.onTalkClick.bind(this)}/>
+        <SpeechBar select={this.select.bind(this)} onTalkClick={this.onTalkClick.bind(this)} handleTalk={this.handleTalk.bind(this)}/>
       </div>
     );
   }

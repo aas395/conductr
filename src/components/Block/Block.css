@@ -37,5 +37,6 @@
     -o-background-size: cover;
     background-size: cover;
     position: relative;
+    border: 15px solid transparent;
     width: 100%;
 }

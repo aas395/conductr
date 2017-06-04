@@ -1,6 +1,6 @@
 .Content {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-
+  margin-bottom: 130px;
   text-align: center;
 }

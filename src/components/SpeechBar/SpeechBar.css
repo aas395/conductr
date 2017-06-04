@@ -34,3 +34,9 @@
   top: -31px;
   margin-left: -20px;
 }
+
+.trash {
+  position:absolute;
+  bottom: 12px;
+  left: 12px;
+  height: 50px;}
