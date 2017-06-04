@@ -92,7 +92,10 @@ class App extends Component {
               // this.state.blockValue.text = input;
               break;
             case "newtext":
-              this.setState({blockValue: {text: input}});
+            console.log(input);
+            console.log(document.querySelector('.Block.selected').firstChild.lastChild);
+              document.querySelector('.Block.selected').firstChild.lastChild.innerHTML = input;
+              // console.log(this.state.selected)
               break;
             case "remove":
               // console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
