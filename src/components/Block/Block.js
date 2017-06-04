@@ -8,23 +8,32 @@ class Block extends Component {
     this.state = {
       id: "",
       components: [
-        {props: "props"},
-        {props: "props"},
-        {props: "props"}
       ]
     }
   }
 
   componentDidMount(){
+
     this.setState({id: this.props.id})
   }
 
   render() {
+    let className = "Block"
+    debugger;
+    if (this.state.id.toUpperCase() === this.props.selected.toUpperCase()) {className = className +" selected"}
+
     return (
-      <div className="Block">
-        <h1 className="b-title">Title</h1>
-        <p className="b-paragraph">Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.</p>
-        <img className="b-img img-fluid"/>
+      <div className={className}>
+        {
+          this.props.type === "image"
+          ?
+          <img className={this.props.value + " img-fluid"}/>
+          :
+          <div>
+            <h1 className="b-title">Title</h1>
+            <p className="b-paragraph">{this.props.value}</p>
+          </div>
+        }
       </div>
     );
   }

@@ -46,6 +46,8 @@ class Content extends Component {
               selected={this.props.selected}
               actions={this.props.actions}
               resetActions={this.props.resetActions}
+              blockImg={this.props.blockImg}
+              blockText={this.props.blockText}
             />
           )
         })

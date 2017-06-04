@@ -32,21 +32,23 @@ class App extends Component {
 
   handleTalk = () => {
 
-    var input = document.querySelector("#response").value.toLowerCase();
+    let input = document.querySelector("#response").value.toLowerCase();
     // fetch.(conversation)
     // .then(stuff => stuff.json)
     // .then(stuff => swtich stament to run based on result of stuff.intent)
 
-    var inputArr = input.split(' ');
-
+    let inputArr = input.split(' ');
+    inputArr[inputArr.length-1] = inputArr[inputArr.length-1].slice(0,-1) //remove period
 
     switch (inputArr[0]) {
       case "select":
-        this.setState({selected: inputArr[1].slice(0, -1)})
+        inputArr.shift()
+        let id = inputArr.join(" ")
+        this.setState({selected: id})
         break;
       case "add":
-        console.log(inputArr[0]+"ed: "+ inputArr[1].slice(0, -1))
-        this.addElement(inputArr[1].slice(0, -1))
+        console.log(inputArr[0]+"ed: "+ inputArr[1])
+        this.addElement(inputArr[1])
         break;
       case "remove":
         console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
@@ -97,15 +99,35 @@ class App extends Component {
 
 
   render() {
+    let blockText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    let blockImg = "b-img";
     let className = "App"
     if (this.state.id.toUpperCase() === this.state.selected.toUpperCase()) {className = className +" selected"}
     return (
       <div className={className}>
-        <Header selected={this.state.selected} showLabels={this.state.showLabels}/>
-        <NavBar selected={this.state.selected} showLabels={this.state.showLabels}/>
-        <Content selected={this.state.selected} showLabels={this.state.showLabels} actions={this.state.actions} resetActions={this.resetActions.bind(this)}/>
+        <Header selected={this.state.selected}
+          showLabels={this.state.showLabels}
+          actions={this.state.actions}
+          resetActions={this.resetActions.bind(this)}/>
 
-        <SpeechBar select={this.select.bind(this)} onTalkClick={this.onTalkClick.bind(this)} handleTalk={this.handleTalk.bind(this)}/>
+        <NavBar selected={this.state.selected}
+          showLabels={this.state.showLabels}
+          actions={this.state.actions}
+          resetActions={this.resetActions.bind(this)}/>
+
+        <Content
+          selected={this.state.selected}
+          showLabels={this.state.showLabels}
+          actions={this.state.actions}
+          resetActions={this.resetActions.bind(this)}
+          blockImg={blockImg}
+          blockText={blockText}
+        />
+
+        <SpeechBar
+          select={this.select.bind(this)}
+          onTalkClick={this.onTalkClick.bind(this)}
+          handleTalk={this.handleTalk.bind(this)}/>
       </div>
     );
   }
