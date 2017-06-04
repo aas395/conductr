@@ -1,18 +1,41 @@
 .Block {
-  flex-grow: 5;
+    flex-grow: 5;
 }
-
 .Block .b-title {
-    text-align: left;
     padding-bottom: 25px;
     letter-spacing: 5px;
+    padding: 2em;
 }
-
-
+.Block .b-title:after {
+    display: block;
+    clear: both;
+    content: "";
+    position: relative;
+    left: 0;
+    bottom : 0;
+    max-width: 250px;
+    height: 1px;
+    width: 50%;
+    border-bottom:1px solid #BD836D;
+    margin: 0 auto;
+    padding: 15px 2em;
+}
 .Block .b-paragraph {
-    text-align: right;
-    border-left: 2px solid #BD836D;
     padding-left: 15px;
     line-height: 2;
     letter-spacing: 3px;
+    padding: 0 2em;
+    padding-bottom: 6em;
+}
+
+
+.b-img {
+    height: 400px;
+    background: url(../../assets/images/block-img-demo.jpg) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    width: 100%;
 }
