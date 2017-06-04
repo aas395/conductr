@@ -5,13 +5,13 @@ class SpeechBar extends Component {
 
 
   handleClick(){
-    this.props.onTalkClick()
+    this.props.onTalkClick();
   }
 
   render() {
     return (
       <div className="SpeechBar">
-            <input type="text" id="response" placeholder="//What you said would go here//"/><button className="trash" onClick={this.props.handleTalk}>Submit</button>
+            <input type="text" id="response" /><button className="trash" onClick={this.props.handleTalk}>Submit</button>
             <button className="talk" type="button" id="talk" onClick={this.handleClick.bind(this)}><i className="fa fa-microphone" aria-hidden="true"></i></button>
       </div>
     );

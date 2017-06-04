@@ -14,6 +14,7 @@ class App extends Component {
       id: "MAIN",
       showLabels: false,
       selected: "Main",
+      conversationContext: {},
       actions: {
         addRow: false,
         addImg: false,
@@ -37,24 +38,71 @@ class App extends Component {
     // .then(stuff => stuff.json)
     // .then(stuff => swtich stament to run based on result of stuff.intent)
 
-    let inputArr = input.split(' ');
-    inputArr[inputArr.length-1] = inputArr[inputArr.length-1].slice(0,-1) //remove period
+// <<<<<<< HEAD
 
-    switch (inputArr[0]) {
-      case "select":
-        inputArr.shift()
-        let id = inputArr.join(" ")
-        this.setState({selected: id})
-        break;
-      case "add":
-        console.log(inputArr[0]+"ed: "+ inputArr[1])
-        this.addElement(inputArr[1])
-        break;
-      case "remove":
-        console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
-        break;
-      default:console.log("nope!")
+// =======
+    var inputArr = input.split(' ');
+
+    var conversationContext = this.state.conversationContext;
+    var requestURL = 'http://localhost:3001/api/conversation?message=' + input;
+
+    if(conversationContext.hasOwnProperty('conversation_id')) {
+      var context = JSON.stringify(conversationContext);
+      requestURL += '&context=' + escape(context);
     }
+
+    var myRequest = new URL(requestURL);
+
+    fetch(myRequest)
+      .then((response) => {
+        return response.text();
+      })
+      .then((response) => {
+        var response = JSON.parse(response);
+        this.setState({conversationContext: response.context})
+
+        var lastWord = inputArr[inputArr.length-1]
+        if (lastWord.indexOf(".") === lastWord[lastWord.length - 1]) {
+            lastWord = lastWord.substring(0, -1)
+            console.log(lastWord)
+        }
+        inputArr[inputArr.length-1] = lastWord //remove period
+
+        switch (inputArr[0]) {
+          case "select":
+            inputArr.shift()
+            let id = inputArr.join(" ")
+            this.setState({selected: id})
+            break;
+          case "add":
+            console.log(inputArr[0]+"ed: "+ inputArr[1])
+            this.addElement(inputArr[1])
+            break;
+          case "remove":
+            console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
+            break;
+          default:console.log("nope!")
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+// >>>>>>> 5301ae6c9292d9b09c199311ea692ab35abfaa1a
+//
+
+    // switch (inputArr[0]) {
+    //   case "select":
+    //     this.setState({selected: inputArr[1].slice(0, -1)})
+    //     break;
+    //   case "add":
+    //     console.log(inputArr[0]+"ed: "+ inputArr[1].slice(0, -1))
+    //     this.addElement(inputArr[1].slice(0, -1))
+    //     break;
+    //   case "remove":
+    //     console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
+    //     break;
+    //   default:console.log("nope!")
+    // }
 
   }
 
@@ -93,8 +141,8 @@ class App extends Component {
     registerServiceWorker();
   }
 
-  select(id){
-    this.setState({selected: id})
+  select(id, conversationId){
+    this.setState({selected: id, conversationId: conversationId})
   }
 
 
@@ -132,49 +180,46 @@ class App extends Component {
     );
   }
 
-    onTalkClick () {
+  onTalkClick () {
   	var myHeaders = new Headers();
   	myHeaders.append('Host', 'localhost:3001');
 
-  	var myInit = { method: 'GET',
-  	               headers: myHeaders,
-  	               mode: 'cors',
-  	               cache: 'default'
-  	           };
+  	var myInit = {
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors',
+  	   cache: 'default'
+  	};
 
   	var myRequest = new Request('http://localhost:3001/api/token', myInit);
 
-        fetch(myRequest)
-          .then((response) => {
-            return response.text();
-          }).then((token) => {
-            var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-              token: token,
-      //        continuous: false, // no longer supported
-              outputElement: '#response' // CSS selector or DOM Element
-            });
+    fetch(myRequest)
+      .then((response) => {
+        return response.text();
+      })
+      .then((token) => {
 
-            stream.on('data', data => {
-              if(data.results[0] && data.results[0].final) {
-                stream.stop();
-                this.handleTalk()
-                console.log('stop listening.');
-              }
-            });
+        var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+          token: token,
+          outputElement: '#response' // CSS selector or DOM Element
+        });
 
-            stream.on('error', function(err) {
-              console.log(err);
-            });
+        stream.on('data', data => {
+          if(data.results[0] && data.results[0].final) {
+            stream.stop();
+            this.handleTalk();
+            console.log('stop listening.');
+          }
+        });
 
-          }).catch(function(error) {
-            console.log(error);
-          });
-      // };
-  }
+        stream.on('error', function(err) {
+          console.log(err);
+        });
 
-
-
-
+      }).catch(function(error) {
+        console.log(error);
+      });
+    }
 }
 
 export default App;

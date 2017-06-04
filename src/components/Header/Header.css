@@ -28,6 +28,15 @@
   margin-top: -50px;
 }
 .Header .wrapper-text .sub-title {
-  line-height: 2;
-  letter-spacing: 5px;
+  font-family: 'Montserrat';
+  font-weight: 300;
+  font-size: 1.3rem;
+  letter-spacing: normal;
+  color: #a0a0a0;
+}
+
+.title {
+  font-weight: 300;
+  margin-bottom: 12px;
+  font-size: 3.5rem;
 }

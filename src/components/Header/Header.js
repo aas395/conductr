@@ -21,7 +21,7 @@ class Header extends Component {
       <div className={className}>
         <div  className="wrapper-text">
           <h1 className="title">CONDUCTR</h1>
-          <h4 className="sub-title">IBM API connect</h4>
+          <h4 className="sub-title">Talk your way to a beautiful website</h4>
         </div>
         {this.props.showLabels ? <div className="label">{this.state.id}</div> : null}
       </div>

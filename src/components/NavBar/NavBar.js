@@ -25,11 +25,9 @@ class NavBar extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav mr-auto">
-              <a className="nav-item nav-link active" href="">Link<span className="sr-only">(current)</span></a>
+              <a className="nav-item nav-link" href="">Link<span className="sr-only">(current)</span></a>
               <a className="nav-item nav-link" href="">Link</a>
               <a className="nav-item nav-link" href="">Link</a>
-              <a className="nav-item nav-link" href="">Link</a>
-
             </div>
           </div>
         </nav>
