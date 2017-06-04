@@ -5,7 +5,7 @@ class NavBar extends Component {
   constructor(){
     super();
     this.state = {
-      id: "A",
+      id: "Nav",
       components: [
       ]
     }
