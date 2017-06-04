@@ -26,12 +26,12 @@ class SpeechBar extends Component {
   render() {
     return (
       <div className="SpeechBar">
-        <span className="response">
+        
           <form onSubmit={this.handleSubmit.bind(this)}>
             <input type="text" id="response" placeholder="//What you said would go here//"/>
             <button className="talk" type="button"><i className="fa fa-microphone" aria-hidden="true"></i></button>
           </form>
-        </span>
+        
       </div>
     );
   }

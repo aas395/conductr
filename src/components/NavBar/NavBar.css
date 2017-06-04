@@ -13,3 +13,9 @@
   color: #fbfbfb;
   border-bottom: 1px solid #fbfbfb;
 }
+
+@media (min-width: 992px) {
+  .NavBar .navbar-toggleable-md .navbar-collapse {
+    width: auto;
+  }
+}
