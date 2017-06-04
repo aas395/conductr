@@ -16,6 +16,25 @@ class App extends Component {
       isSelected: true,
       selected: "Main"
     }
+    this.onTalkClick = this.onTalkClick.bind(this)
+  }
+
+  handleTalk = () => {
+    var input = document.querySelector("#response").value.toLowerCase();
+    var inputArr = input.split(' ');
+    switch (inputArr[0]) {
+      case "select":
+        this.setState({selected: inputArr[1].slice(0, -1)})
+        break;
+      case "add":
+        console.log(inputArr[0]+"ed: "+inputArr[inputArr.length - 1])
+        break;
+      case "remove":
+        console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
+        break;
+      default:console.log("nope!")
+    }
+
   }
 
   componentDidMount(){
@@ -54,33 +73,19 @@ class App extends Component {
   	var myRequest = new Request('http://localhost:3001/api/token', myInit);
 
         fetch(myRequest)
-          .then(function(response) {
+          .then((response) => {
             return response.text();
-          }).then(function (token) {
-
+          }).then((token) => {
             var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
               token: token,
       //        continuous: false, // no longer supported
               outputElement: '#response' // CSS selector or DOM Element
             });
 
-            stream.on('data', function(data) {
+            stream.on('data', data => {
               if(data.results[0] && data.results[0].final) {
                 stream.stop();
-  							var input = document.querySelector("#response").value;
-  							var inputArr = input.split(' ');
-  							switch (inputArr[0]) {
-  								case "select":
-  									console.log(inputArr[0]+"ed: "+inputArr[inputArr.length - 1])
-  									break;
-  								case "add":
-  									console.log(inputArr[0]+"ed: "+inputArr[inputArr.length - 1])
-  									break;
-  								case "remove":
-  									console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
-  									break;
-  								default:console.log("nope!")
-  							}
+                this.handleTalk()
                 console.log('stop listening.');
               }
             });
@@ -94,7 +99,6 @@ class App extends Component {
           });
       // };
   }
-
 
 
 

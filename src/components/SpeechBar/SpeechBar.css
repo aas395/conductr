@@ -1,26 +1,24 @@
 .SpeechBar {
-  color: black;
-  background-color: rgba(255,255,255,0.5);
   position: fixed;
-  bottom: 0;
-  height: 10vh;
-  min-height: 60px;
-  width: 100vw;
-  line-height: 60px;
+  bottom: 5px;
+  min-height: 100px;
+  line-height: 120px;
   vertical-align: middle;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
-
-.response {
-  width: 75%;
-}
-
 
 .SpeechBar span {
   display: block;
   color: #fff;
-  line-height: 130px;
+}
+.SpeechBar #response {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 100vw;
+  display: block;
+  text-align: center;
+  width: 100vw;
 }
 
 .SpeechBar .talk {
@@ -34,4 +32,5 @@
   border: 2px solid #2F3034;
   position: absolute;
   top: -31px;
+  margin-left: -20px;
 }
