@@ -35,6 +35,12 @@
   margin-left: -20px;
 }
 
+.SpeechBar .talk .fa-microphone {
+  position: relative;
+  top: -2px;
+  right: -1px;
+}
+
 .trash {
   position:absolute;
   bottom: 12px;
