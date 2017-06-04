@@ -38,9 +38,6 @@ class App extends Component {
     // .then(stuff => stuff.json)
     // .then(stuff => swtich stament to run based on result of stuff.intent)
 
-// <<<<<<< HEAD
-
-// =======
     var inputArr = input.split(' ');
 
     var conversationContext = this.state.conversationContext;
@@ -60,12 +57,12 @@ class App extends Component {
       .then((response) => {
         var response = JSON.parse(response);
         this.setState({conversationContext: response.context})
-
         var lastWord = inputArr[inputArr.length-1]
-        if (lastWord.indexOf(".") === lastWord[lastWord.length - 1]) {
-            lastWord = lastWord.substring(0, -1)
-            console.log(lastWord)
+
+        if (lastWord.indexOf(".") == lastWord.length - 1) {
+            lastWord = lastWord.substring(0, lastWord.length-1);
         }
+        
         inputArr[inputArr.length-1] = lastWord //remove period
 
         switch (inputArr[0]) {
@@ -87,23 +84,6 @@ class App extends Component {
       .catch(function(error) {
         console.log(error);
       });
-// >>>>>>> 5301ae6c9292d9b09c199311ea692ab35abfaa1a
-//
-
-    // switch (inputArr[0]) {
-    //   case "select":
-    //     this.setState({selected: inputArr[1].slice(0, -1)})
-    //     break;
-    //   case "add":
-    //     console.log(inputArr[0]+"ed: "+ inputArr[1].slice(0, -1))
-    //     this.addElement(inputArr[1].slice(0, -1))
-    //     break;
-    //   case "remove":
-    //     console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
-    //     break;
-    //   default:console.log("nope!")
-    // }
-
   }
 
   resetActions(){

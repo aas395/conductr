@@ -10,16 +10,20 @@ class Row extends Component {
     this.state = {
       id: "",
       components: [
-        {props: {
-          type: "text",
-          value: ""}
-        }
+
       ]
     }
   }
 
   componentDidMount(){
-    this.setState({id: this.props.id})
+    this.setState({
+      id: this.props.id,
+      components: this.state.components.concat({props: {
+        type: "text",
+        value: this.props.blockText}
+      })
+    })
+
   }
 
   componentDidUpdate(){
@@ -45,6 +49,7 @@ class Row extends Component {
       value: this.props.blockText}
     })
   });
+  debugger;
     this.props.resetActions()
   }
 
