@@ -91,7 +91,7 @@ class App extends Component {
             case "addtext":
               // this.state.blockValue.text = input;
               break;
-            case "goodbyes":
+            case "newtext":
               this.setState({blockValue: {text: input}});
               break;
             case "remove":
