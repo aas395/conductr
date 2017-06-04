@@ -23,7 +23,7 @@ class Block extends Component {
   }
 
   fontChange(direction) {
-    style = this.state.style
+    // style = this.state.style
     if (direction === "bigger") {
 
     }

@@ -63,24 +63,31 @@ class App extends Component {
 
         if(typeof intents[0] != 'undefined') {
           var intent = intents[0].intent;
+          var entity = '';
+
           if(typeof entities[0] != 'undefined') {
-            var entity = entities[0];
+            for(var i = 0; i < entities.length; i++) {
+              if(i == 0) {
+                entity = entities[i].value;
+              } else {
+                entity =  entity + ' ' + entities[i].value;  
+              }
+            }
           }
-          
 
           switch (intent) {
             case "select":
               if(typeof entity != 'undefined') {
-                this.setState({selected: entity.value});
+                this.setState({selected: entity});
               } else {
                 this.setState({selected: ''});
               }
               break;
             case "create":
-              this.addElement(entity.value);
+              this.addElement(entity);
               break;
             case "addtext":
-              this.addElement(entity.value);
+              this.addElement(entity);
               break;
             case "remove":
               // console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
