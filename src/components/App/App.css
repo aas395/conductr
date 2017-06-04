@@ -16,9 +16,9 @@
 }
 
 .label {
-  position: relative;
+  position: absolute;
   top: 15px;
-  right: -15px;
+  left: 15px;
   height: 0px;
   z-index: 9999;
   color: red;
@@ -26,4 +26,7 @@
 
 .label.body-label {
   top: -27px;
+}
+.Content, .Header {
+  position: relative;
 }

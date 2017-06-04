@@ -25,9 +25,10 @@ class Block extends Component {
   fontChange(direction) {
     style = this.state.style
     if (direction === "bigger") {
-      
+
     }
     this.props.resetActions()
+
   }
 
   render() {
