@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import registerServiceWorker from '../../registerServiceWorker';
-import WatsonSpeech from 'watson-speech';
+//import WatsonSpeech from 'watson-speech';
 import './App.css';
 import Header from './../Header/Header';
 import Content from './../Content/Content';
@@ -160,31 +160,31 @@ class App extends Component {
   	var myRequest = new Request('http://localhost:3001/api/token', myInit);
 
     fetch(myRequest)
-      .then((response) => {
-        return response.text();
-      })
-      .then((token) => {
+      // .then((response) => {
+      //   return response.text();
+      // })
+      // .then((token) => {
 
-        var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-          token: token,
-          outputElement: '#response' // CSS selector or DOM Element
-        });
+      //   var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+      //     token: token,
+      //     outputElement: '#response' // CSS selector or DOM Element
+      //   });
 
-        stream.on('data', data => {
-          if(data.results[0] && data.results[0].final) {
-            stream.stop();
-            this.handleTalk();
-            console.log('stop listening.');
-          }
-        });
+      //   stream.on('data', data => {
+      //     if(data.results[0] && data.results[0].final) {
+      //       stream.stop();
+      //       this.handleTalk();
+      //       console.log('stop listening.');
+      //     }
+      //   });
 
-        stream.on('error', function(err) {
-          console.log(err);
-        });
+      //   stream.on('error', function(err) {
+      //     console.log(err);
+      //   });
 
-      }).catch(function(error) {
-        console.log(error);
-      });
+      // }).catch(function(error) {
+      //   console.log(error);
+      // });
     }
 }
 
