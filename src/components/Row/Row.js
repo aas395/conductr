@@ -27,7 +27,7 @@ class Row extends Component {
   }
 
   componentDidUpdate(){
-    if (this.props.selected.toLowerCase() === this.state.id) {
+    if (this.props.selected.toLowerCase() === this.state.id.toLowerCase()) {
       this.props.actions.addImg ? this.addImageBlock() : null
       this.props.actions.addText ? this.addTextBlock() : null
       }
@@ -68,6 +68,8 @@ class Row extends Component {
             parentId={this.state.id}
             id={this.state.id  +(i+1)}
             selected={this.props.selected}
+            actions={this.props.actions}
+            resetActions={this.props.resetActions}
           />
         )
       })
