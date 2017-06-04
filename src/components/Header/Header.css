@@ -29,8 +29,8 @@
 }
 .Header .wrapper-text .sub-title {
   font-family: 'Montserrat';
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 300;
+  font-size: 1.3rem;
   letter-spacing: normal;
   color: #a0a0a0;
 }
@@ -38,7 +38,5 @@
 .title {
   font-weight: 300;
   margin-bottom: 12px;
-}
-.sub-title {
-  
+  font-size: 3.5rem;
 }

@@ -4,6 +4,9 @@
   width: 100%;
   background-color: transparent;
 }
+.NavBar .navbar-nav {
+  margin-top: 10px;
+}
 .NavBar .navbar-light .navbar-nav .nav-link {
   color: #fbfbfb;
   padding: 10px 50px;

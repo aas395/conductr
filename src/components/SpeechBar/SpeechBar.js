@@ -5,7 +5,7 @@ class SpeechBar extends Component {
 
 
   handleClick(){
-    this.props.onTalkClick()
+    this.props.onTalkClick();
   }
 
   render() {

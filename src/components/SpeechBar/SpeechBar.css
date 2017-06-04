@@ -27,11 +27,18 @@
   width: 41px;
   height: 55px;
   border-radius: 40px;
-  background: red;
-  border: 2px solid #2F3034;
+  background: #BCC8C8;
+  border: 1px solid #2F3034;
   position: absolute;
   top: -31px;
   margin-left: -20px;
+  outline: none;
+}
+.SpeechBar .talk:hover {
+  background-color: #32D0B6;
+}
+.SpeechBar .talk.recording {
+  background-color: #32D0B6;
 }
 
 .SpeechBar .talk .fa-microphone {
