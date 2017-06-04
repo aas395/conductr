@@ -6,7 +6,7 @@ class Content extends Component {
   constructor(){
     super();
     this.state = {
-      id: "body",
+      id: "Body",
       addRow: false,
       components: [
         {props: "props"}
@@ -36,6 +36,7 @@ class Content extends Component {
   if (this.state.id.toUpperCase() == this.props.selected.toUpperCase()) {className = className +" selected"}
 
     return (
+      <div className="wrapper-content">
       <div className={className}>
         {this.state.components.map((component, i) => {
           return(
@@ -48,11 +49,13 @@ class Content extends Component {
               actions={this.props.actions}
               resetActions={this.props.resetActions}
               blockValue={this.props.blockValue}
+              showLabels={this.props.showLabels}
             />
           )
         })
       }
-        {this.props.showLabels ? <div className="label">{this.state.id}</div> : null}
+      </div> 
+      {this.props.showLabels ? <div className="label label-body">{this.state.id}</div> : null}
       </div>
     );
   }

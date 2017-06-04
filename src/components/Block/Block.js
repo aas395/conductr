@@ -19,7 +19,6 @@ class Block extends Component {
 
   render() {
     let className = "Block"
-    debugger;
     if (this.state.id.toUpperCase() === this.props.selected.toUpperCase()) {className = className +" selected"}
 
     return (
@@ -29,10 +28,14 @@ class Block extends Component {
           ?
           <img src='https://s-media-cache-ak0.pinimg.com/736x/3f/03/2a/3f032ae4a4c865b458e207c0f154098a.jpg' alt="image" className="b-img img-fluid"/>
           :
-          <div>
+          <div className="wrapper-text">
             <h1 className="b-title">Title</h1>
             <p className="b-paragraph">{this.props.value}</p>
+            {this.props.showLabels ? 
+            <div className="label block-label">{this.state.id}</div>
+            : null}
           </div>
+          
         }
       </div>
     );

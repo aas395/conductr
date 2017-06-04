@@ -68,6 +68,7 @@ class Row extends Component {
             parentId={this.state.id}
             id={this.state.id  +(i+1)}
             selected={this.props.selected}
+            showLabels={this.props.showLabels}
           />
         )
       })

@@ -27,7 +27,8 @@
   width: 45px;
   height: 60px;
   border-radius: 40px;
-  background: red;
+  background: white;
+  color: red;
   border: 5px solid #2F3034;
   position: absolute;
   top: -40px;
@@ -36,13 +37,14 @@
   transition: .25s background-color;
 }
 .SpeechBar .talk:hover {
-  background-color: #32D0B6;
-  
+  background-color: red;
+  color: white;
   cursor: pointer;
 }
 .SpeechBar .talk.recording {
-  background-color: #32D0B6;
-}
+  background-color: red;
+  color: white;
+  }
 
 .SpeechBar .talk .fa-microphone {
   position: relative;

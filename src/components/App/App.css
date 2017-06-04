@@ -12,18 +12,26 @@
 }
 
 .selected {
-  border: 5px solid red;
+  border: 3px dashed red;
 }
 
 .label {
   position: relative;
   top: 15px;
-  right: -15px;
+  left: 15px;
   height: 0px;
   z-index: 9999;
   color: red;
+  text-transform: uppercase;
 }
 
-.label.body-label {
-  top: -27px;
+.label.label-body {
+  position: absolute;
+  top: 615px;
+}
+
+.label.block-label {
+  position: absolute;
+  top: 15px;
+  right: 0;
 }

@@ -1,6 +1,9 @@
 .Block {
     flex-grow: 5;
 }
+.Block .wrapper-text {
+    position: relative;
+}
 .Block .b-title {
     padding-bottom: 25px;
     letter-spacing: 5px;
