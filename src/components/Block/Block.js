@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Block.css';
-
+import "./block-img-ok-1.jpg";
 
 class Block extends Component {
   constructor(){
@@ -13,8 +13,8 @@ class Block extends Component {
   }
 
   componentDidMount(){
-
     this.setState({id: this.props.id})
+    debugger;
   }
 
   render() {
@@ -27,7 +27,7 @@ class Block extends Component {
         {
           this.props.type === "image"
           ?
-          <img src={this.props.value} className="b-img img-fluid"/>
+          <img src='https://s-media-cache-ak0.pinimg.com/736x/3f/03/2a/3f032ae4a4c865b458e207c0f154098a.jpg' alt="image" className="b-img img-fluid"/>
           :
           <div>
             <h1 className="b-title">Title</h1>

@@ -15,6 +15,10 @@ class App extends Component {
       showLabels: false,
       selected: "Main",
       conversationContext: {},
+      blockValue: {
+        text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+        image: "block-img-ok-1.jpg"
+      },
       actions: {
         addRow: false,
         addImg: false,
@@ -62,7 +66,7 @@ class App extends Component {
         if (lastWord.indexOf(".") == lastWord.length - 1) {
             lastWord = lastWord.substring(0, lastWord.length-1);
         }
-        
+
         inputArr[inputArr.length-1] = lastWord //remove period
 
         switch (inputArr[0]) {
@@ -127,8 +131,6 @@ class App extends Component {
 
 
   render() {
-    let blockText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    let blockImg = "b-img";
     let className = "App"
     if (this.state.id.toUpperCase() === this.state.selected.toUpperCase()) {className = className +" selected"}
     return (
@@ -143,8 +145,7 @@ class App extends Component {
           showLabels={this.state.showLabels}
           actions={this.state.actions}
           resetActions={this.resetActions.bind(this)}
-          blockImg={blockImg}
-          blockText={blockText}
+          blockValue={this.state.blockValue}
         />
 
         <SpeechBar
