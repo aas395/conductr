@@ -12,7 +12,7 @@ registerServiceWorker();
 
 //asdfasdf
 
-document.querySelector('#button').onclick = function () {
+document.querySelector('#talk').onclick = function () {
 	var myHeaders = new Headers();
 	myHeaders.append('Host', 'localhost:3001');
 
