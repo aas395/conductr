@@ -88,6 +88,12 @@ class App extends Component {
             case "create":
               this.addElement(entity);
               break;
+             case "moveUp":
+              // this.addElement(entity);
+              break;
+            case "moveDown":
+              // this.addElement(entity);
+              break;
             case "addtext":
               // this.state.blockValue.text = input;
               break;
