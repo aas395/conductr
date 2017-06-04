@@ -57,7 +57,7 @@ class App extends Component {
       .then((response) => {
         var response = JSON.parse(response);
         this.setState({conversationContext: response.context});
-        
+
         var intents = response.intents;
         var entities = response.entities;
 
@@ -75,10 +75,14 @@ class App extends Component {
             }
           }
 
+          let actions = this.state.actions;
+
           switch (intent) {
             case "select":
               if(typeof entity != 'undefined') {
+
                 this.setState({selected: entity});
+                console.log(this.state);
               } else {
                 this.setState({selected: ''});
               }
@@ -99,13 +103,17 @@ class App extends Component {
               this.setState({showLabels: false});
             break;
             case "increasesize":
-              this.setState({fontBigger: true});
+              actions.fontBigger = true
+              console.log("increase",this.state.actions)
             break;
             case "decreasesize":
-              this.setState({fontSmaller: true});
+              actions.fontSmaller = true
+              console.log("decrease",this.state.actions)
             break;
             default:console.log("nope!")
           }
+
+          this.setState({actions:actions});
         }
 
         var output = response.output.text;
