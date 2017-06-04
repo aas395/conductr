@@ -15,7 +15,7 @@ class NavBar extends Component {
 
   render() {
     let className = "NavBar"
-    if (this.state.id.toUpperCase() == this.props.selected.toUpperCase()) {className = className +" selected"}
+    if (this.state.id.toUpperCase() === this.props.selected.toUpperCase()) {className = className +" selected"}
 
     return (
       <div className={className}>

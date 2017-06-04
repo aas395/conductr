@@ -24,7 +24,7 @@ class Content extends Component {
     return (
       <div className={className}>
         <button onClick={this.addBlock.bind(this)}>Add Row</button>
-        {this.state.components.map((component, i) => <Row key={i} data={component.props} parentId={this.state.id} id={this.state.id + (i+1)} />)}
+        {this.state.components.map((component, i) => <Row key={i} data={component.props} parentId={this.state.id} id={this.state.id +" "+ (i+1)} />)}
         {this.props.showLabels ? <div className="label">{this.state.id}</div> : null}
       </div>
     );

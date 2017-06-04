@@ -26,7 +26,7 @@ class Row extends Component {
     return (
       <div className="Row">
         <button onClick={this.addBlock.bind(this)}>Add Block</button>
-        {this.state.components.map((component, i) => <Block key={i} data={component.props} parentId={this.state.id} id={this.state.id + String.fromCharCode(i+65)}/>)}
+        {this.state.components.map((component, i) => <Block key={i} data={component.props} parentId={this.state.id} id={this.state.id  +(i+1)}/>)}
       </div>
     );
   }
