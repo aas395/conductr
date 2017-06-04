@@ -27,7 +27,7 @@ class Block extends Component {
         {
           this.props.type === "image"
           ?
-          <img className={this.props.value + " img-fluid"}/>
+          <img src={this.prop.value} className="img-fluid b-img"/>
           :
           <div>
             <h1 className="b-title">Title</h1>

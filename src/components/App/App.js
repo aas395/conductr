@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import registerServiceWorker from '../../registerServiceWorker';
-//import WatsonSpeech from 'watson-speech';
+import WatsonSpeech from 'watson-speech';
 import './App.css';
 import Header from './../Header/Header';
 import Content from './../Content/Content';
@@ -148,7 +148,7 @@ class App extends Component {
 
   render() {
     let blockText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    let blockImg = "b-img";
+    let blockImg = "../../assets/images/block-img-.jpg";
     let className = "App"
     if (this.state.id.toUpperCase() === this.state.selected.toUpperCase()) {className = className +" selected"}
     return (
@@ -194,31 +194,31 @@ class App extends Component {
   	var myRequest = new Request('http://localhost:3001/api/token', myInit);
 
     fetch(myRequest)
-      // .then((response) => {
-      //   return response.text();
-      // })
-      // .then((token) => {
+      .then((response) => {
+        return response.text();
+      })
+      .then((token) => {
 
-      //   var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-      //     token: token,
-      //     outputElement: '#response' // CSS selector or DOM Element
-      //   });
+        var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+          token: token,
+          outputElement: '#response' // CSS selector or DOM Element
+        });
 
-      //   stream.on('data', data => {
-      //     if(data.results[0] && data.results[0].final) {
-      //       stream.stop();
-      //       this.handleTalk();
-      //       console.log('stop listening.');
-      //     }
-      //   });
+        stream.on('data', data => {
+          if(data.results[0] && data.results[0].final) {
+            stream.stop();
+            this.handleTalk();
+            console.log('stop listening.');
+          }
+        });
 
-      //   stream.on('error', function(err) {
-      //     console.log(err);
-      //   });
+        stream.on('error', function(err) {
+          console.log(err);
+        });
 
-      // }).catch(function(error) {
-      //   console.log(error);
-      // });
+      }).catch(function(error) {
+        console.log(error);
+      });
     }
 }
 

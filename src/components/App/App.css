@@ -11,7 +11,7 @@
 }
 
 .selected {
-  border: 5px solid red;
+  border: 3px dashed red;
 }
 
 .label {
