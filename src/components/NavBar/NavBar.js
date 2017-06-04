@@ -19,7 +19,7 @@ class NavBar extends Component {
 
     return (
       <div className={className}>
-        <nav className="navbar navbar-toggleable-md navbar-light mr-auto w-100 justify-content-end">
+        <nav className="navbar navbar-toggleable-xl navbar-light mr-auto w-100 justify-content-end">
           <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

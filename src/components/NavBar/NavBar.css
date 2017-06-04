@@ -37,7 +37,7 @@
 }
 
 @media (min-width: 992px) {
-  .NavBar .navbar-toggleable-md .navbar-collapse {
+  .NavBar .navbar-toggleable-xl .navbar-collapse {
     width: auto;
   }
 }
