@@ -6,7 +6,7 @@ class Content extends Component {
   constructor(){
     super();
     this.state = {
-      id: "body",
+      id: "Body",
       addRow: false,
       components: [
         {props: "props"}

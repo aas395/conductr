@@ -91,6 +91,9 @@ class App extends Component {
             case "increasesize":
               this.setState({fontBigger: true});
             break;
+            case "decreasesize":
+              this.setState({fontSmaller: true});
+            break;
             default:console.log("nope!")
           }
         }
