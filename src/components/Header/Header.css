@@ -1,6 +1,33 @@
 .Header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+  height: 600px;
+  background: url(../../assets/images/header-img-demo.png) no-repeat; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: relative;
+}
+.Header:after {
+  content: "";
+  background-color: #622F2C;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.Header .wrapper-text {
+  height: 600px;
+  letter-spacing: 10px;
+  text-align: center;
+  z-index: 9;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 50%;
+  height: 100px;
+  margin-top: -50px;
+}
+.Header .wrapper-text .sub-title {
+  line-height: 2;
+  letter-spacing: 5px;
 }

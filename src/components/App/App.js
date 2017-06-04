@@ -9,22 +9,31 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      components: [
-        <Header key="1"/>,
-        <NavBar key="2"/>,
-        <Content key="3"/>
-      ]
+      id: "MAIN",
+      showLabels: false,
+      isSelected: true,
+      selected: "Main"
     }
   }
 
+  componentDidMount(){
+  }
 
+  select(id){
+    this.setState({selected: id})
+  }
 
 
   render() {
+    let className = "App"
+    if (this.state.id.toUpperCase() === this.state.selected.toUpperCase()) {className = className +" selected"}
     return (
-      <div className="App">
-        {this.state.components}
-        <SpeechBar />
+      <div className={className}>
+        <Header selected={this.state.selected} showLabels={this.state.showLabels}/>
+        <NavBar selected={this.state.selected} showLabels={this.state.showLabels}/>
+        <Content selected={this.state.selected} showLabels={this.state.showLabels}/>
+
+        <SpeechBar select={this.select.bind(this)}/>
       </div>
     );
   }
