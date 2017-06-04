@@ -7,7 +7,7 @@ class Block extends Component {
     super();
     this.state = {
       id: "",
-      pStyles: {fontSize: "16px"}
+      pStyle: {fontSize: "16px"}
     }
   }
 
@@ -16,17 +16,22 @@ class Block extends Component {
   }
 
   componentDidUpdate(){
-    if (this.props.selected.toLowerCase() === this.state.id) {
+    if (this.props.selected.toLowerCase() === this.state.id.toLowerCase()) {
       this.props.actions.fontBigger ? this.fontChange("bigger") : null
       this.props.actions.fontSmaller ? this.fontChange("smaller") : null
       }
   }
 
   fontChange(direction) {
-    style = this.state.style
+    var pStyle = this.state.pStyle
+    var font = parseInt(pStyle.fontSize)
     if (direction === "bigger") {
-
+      font = font + 2
+    } else {
+      font = font - 2
     }
+    pStyle.fontSize = font + "px"
+    this.setState({pStyle})
     this.props.resetActions()
 
   }
@@ -44,7 +49,7 @@ class Block extends Component {
           :
           <div>
             <h1 className="b-title">Title</h1>
-            <p className="b-paragraph" style={this.state.pStyles}>{this.props.value}</p>
+            <p className="b-paragraph" style={this.state.pStyle}>{this.props.value}</p>
           </div>
         }
       </div>

@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       id: "MAIN",
       showLabels: false,
-      selected: "",
+      selected: "body 11",
       conversationContext: {},
       blockValue: {
         text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
@@ -57,7 +57,7 @@ class App extends Component {
       .then((response) => {
         var response = JSON.parse(response);
         this.setState({conversationContext: response.context});
-        
+
         var intents = response.intents;
         var entities = response.entities;
 
@@ -66,7 +66,8 @@ class App extends Component {
           if(typeof entities[0] != 'undefined') {
             var entity = entities[0];
           }
-          
+
+          let actions = this.state.actions;
 
           switch (intent) {
             case "select":
@@ -89,13 +90,17 @@ class App extends Component {
               this.setState({showLabels: false});
             break;
             case "increasesize":
-              this.setState({fontBigger: true});
+              actions.fontBigger = true
+              console.log("increase",this.state.actions)
             break;
             case "decreasesize":
-              this.setState({fontSmaller: true});
+              actions.fontSmaller = true
+              console.log("decrease",this.state.actions)
             break;
             default:console.log("nope!")
           }
+
+          this.setState({actions:actions});
         }
       })
       .catch(function(error) {
