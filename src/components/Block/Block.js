@@ -13,13 +13,11 @@ class Block extends Component {
   }
 
   componentDidMount(){
-
     this.setState({id: this.props.id})
   }
 
   render() {
     let className = "Block"
-    debugger;
     if (this.state.id.toUpperCase() === this.props.selected.toUpperCase()) {className = className +" selected"}
 
     return (

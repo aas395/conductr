@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import registerServiceWorker from '../../registerServiceWorker';
-//import WatsonSpeech from 'watson-speech';
+import WatsonSpeech from 'watson-speech';
 import './App.css';
 import Header from './../Header/Header';
 import Content from './../Content/Content';
@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       id: "MAIN",
       showLabels: false,
-      selected: "Main",
+      selected: "",
       conversationContext: {},
       actions: {
         addRow: false,
@@ -33,14 +33,10 @@ class App extends Component {
 
   handleTalk = () => {
 
-    let input = document.querySelector("#response").value.toLowerCase();
-    // fetch.(conversation)
-    // .then(stuff => stuff.json)
-    // .then(stuff => swtich stament to run based on result of stuff.intent)
-
-    var inputArr = input.split(' ');
-
     var conversationContext = this.state.conversationContext;
+
+    let input = document.querySelector("#response").value.toLowerCase();
+
     var requestURL = 'http://localhost:3001/api/conversation?message=' + input;
 
     if(conversationContext.hasOwnProperty('conversation_id')) {
@@ -57,28 +53,42 @@ class App extends Component {
       .then((response) => {
         var response = JSON.parse(response);
         this.setState({conversationContext: response.context})
-        var lastWord = inputArr[inputArr.length-1]
-
-        if (lastWord.indexOf(".") == lastWord.length - 1) {
-            lastWord = lastWord.substring(0, lastWord.length-1);
-        }
         
-        inputArr[inputArr.length-1] = lastWord //remove period
+        var intents = response.intents;
+        var entities = response.entities;
 
-        switch (inputArr[0]) {
-          case "select":
-            inputArr.shift()
-            let id = inputArr.join(" ")
-            this.setState({selected: id})
+        if(typeof intents[0] != 'undefined') {
+          var intent = intents[0].intent;
+          if(typeof entities[0] != 'undefined') {
+            var entity = entities[0];
+          }
+          
+
+          switch (intent) {
+            case "select":
+              if(typeof entity != 'undefined') {
+                this.setState({selected: entity.value});
+              } else {
+                this.setState({selected: ''});
+              }
+              break;
+            case "create":
+              this.addElement(entity.value);
+              break;
+            case "remove":
+              // console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
+              break;
+            case "showlabels":
+              this.setState({showLabels: true});
             break;
-          case "add":
-            console.log(inputArr[0]+"ed: "+ inputArr[1])
-            this.addElement(inputArr[1])
+            case "hidelabels":
+              this.setState({showLabels: false});
             break;
-          case "remove":
-            console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
+            case "increasesize":
+              this.setState({fontBigger: true});
             break;
-          default:console.log("nope!")
+            default:console.log("nope!")
+          }
         }
       })
       .catch(function(error) {
@@ -169,31 +179,31 @@ class App extends Component {
   	var myRequest = new Request('http://localhost:3001/api/token', myInit);
 
     fetch(myRequest)
-      // .then((response) => {
-      //   return response.text();
-      // })
-      // .then((token) => {
+      .then((response) => {
+        return response.text();
+      })
+      .then((token) => {
 
-      //   var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-      //     token: token,
-      //     outputElement: '#response' // CSS selector or DOM Element
-      //   });
+        var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+          token: token,
+          outputElement: '#response' // CSS selector or DOM Element
+        });
 
-      //   stream.on('data', data => {
-      //     if(data.results[0] && data.results[0].final) {
-      //       stream.stop();
-      //       this.handleTalk();
-      //       console.log('stop listening.');
-      //     }
-      //   });
+        stream.on('data', data => {
+          if(data.results[0] && data.results[0].final) {
+            stream.stop();
+            this.handleTalk();
+            console.log('stop listening.');
+          }
+        });
 
-      //   stream.on('error', function(err) {
-      //     console.log(err);
-      //   });
+        stream.on('error', function(err) {
+          console.log(err);
+        });
 
-      // }).catch(function(error) {
-      //   console.log(error);
-      // });
+      }).catch(function(error) {
+        console.log(error);
+      });
     }
 }
 
