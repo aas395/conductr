@@ -13,16 +13,26 @@ registerServiceWorker();
 //asdfasdf
 
 document.querySelector('#button').onclick = function () {
-      fetch('/api/speech-to-text/token')
-        .then(function(response) {
+	var myHeaders = new Headers();
+	myHeaders.append('Host', 'localhost:3001');
 
+	var myInit = { method: 'GET',
+	               headers: myHeaders,
+	               mode: 'cors',
+	               cache: 'default'
+	           };
+
+	var myRequest = new Request('http://localhost:3001/api/token', myInit);
+
+      fetch(myRequest)
+        .then(function(response) {
           return response.text();
         }).then(function (token) {
           
           var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
             token: token,
     //        continuous: false, // no longer supported
-            outputElement: '#output' // CSS selector or DOM Element
+            outputElement: '#response' // CSS selector or DOM Element
           });
 
           stream.on('data', function(data) {
