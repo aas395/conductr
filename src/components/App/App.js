@@ -79,6 +79,9 @@ class App extends Component {
             case "create":
               this.addElement(entity.value);
               break;
+            case "addtext":
+              this.addElement(entity.value);
+              break;
             case "remove":
               // console.log(inputArr[0]+"d: "+inputArr[inputArr.length - 1])
               break;
