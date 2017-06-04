@@ -2,11 +2,17 @@
   flex-grow: 5;
 }
 
-.Block:nth-of-type(even){
-  background: gray;
+.Block .b-title {
+    text-align: left;
+    padding-bottom: 25px;
+    letter-spacing: 5px;
 }
 
-.Block:nth-of-type(odd){
-  background: white;
-  border: 1px solid black;
+
+.Block .b-paragraph {
+    text-align: right;
+    border-left: 2px solid #BD836D;
+    padding-left: 15px;
+    line-height: 2;
+    letter-spacing: 3px;
 }
