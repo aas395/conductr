@@ -7,19 +7,31 @@ class Block extends Component {
     super();
     this.state = {
       id: "",
-      components: [
-      ]
+      pStyles: {fontSize: "16px"}
     }
   }
 
   componentDidMount(){
     this.setState({id: this.props.id})
-    debugger;
+  }
+
+  componentDidUpdate(){
+    if (this.props.selected.toLowerCase() === this.state.id) {
+      this.props.actions.fontBigger ? this.fontChange("bigger") : null
+      this.props.actions.fontSmaller ? this.fontChange("smaller") : null
+      }
+  }
+
+  fontChange(direction) {
+    style = this.state.style
+    if (direction === "bigger") {
+      
+    }
+    this.props.resetActions()
   }
 
   render() {
     let className = "Block"
-    debugger;
     if (this.state.id.toUpperCase() === this.props.selected.toUpperCase()) {className = className +" selected"}
 
     return (
@@ -31,7 +43,7 @@ class Block extends Component {
           :
           <div>
             <h1 className="b-title">Title</h1>
-            <p className="b-paragraph">{this.props.value}</p>
+            <p className="b-paragraph" style={this.state.pStyles}>{this.props.value}</p>
           </div>
         }
       </div>
