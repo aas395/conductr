@@ -19,6 +19,9 @@
   text-align: center;
   height: 100%;
 }
+.SpeechBar #response::placeholder {
+  color: #466BB0;
+}
 
 .SpeechBar .talk {
   line-height: 54px;

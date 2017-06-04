@@ -116,7 +116,8 @@ class App extends Component {
                 var outputForConsole = output[x];
                 totalOutput = totalOutput + " " + outputForConsole;
             }
-            document.getElementById('response').value = totalOutput;
+            document.getElementById('response').value = '';
+            document.getElementById('response').placeholder = totalOutput;
         }
 
 
