@@ -1,5 +1,5 @@
 .Block {
-  grid-column: span 1;
+  flex-grow: 5;
 }
 
 .Block:nth-of-type(even){

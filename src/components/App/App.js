@@ -9,38 +9,31 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
+      id: "MAIN",
+      showLabels: true,
       isSelected: true,
-      selected: "",
-      components: [
-
-      ],
-      styles: {
-        boxShadow: "5px 5px 5px rgba(6255,255,0,0.6)",
-        filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)",
-        zoom: 1
-      }
+      selected: "Main"
     }
   }
 
   componentDidMount(){
-
   }
 
   select(id){
     this.setState({selected: id})
   }
 
-  isSelected(el){
-    debugger;
-  }
 
   render() {
+    let className = "App"
+    if (this.state.id.toUpperCase() === this.state.selected.toUpperCase()) {className = className +" selected"}
     return (
-      <div className="App" style={this.state.styles}>
-        <Header key="1"/>
-        <NavBar key="2"/>
-        <Content key="3" selected={this.select.bind(this)}/>
-        <SpeechBar />
+      <div className={className}>
+        <Header selected={this.state.selected} showLabels={this.state.showLabels}/>
+        <NavBar selected={this.state.selected} showLabels={this.state.showLabels}/>
+        <Content selected={this.state.selected} showLabels={this.state.showLabels}/>
+
+        <SpeechBar select={this.select.bind(this)}/>
       </div>
     );
   }

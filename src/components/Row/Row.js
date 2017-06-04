@@ -10,9 +10,6 @@ class Row extends Component {
     this.state = {
       id: "",
       components: [
-        {props: "props"},
-        {props: "props"},
-        {props: "props"}
       ]
     }
   }

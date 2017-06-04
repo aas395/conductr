@@ -1,6 +1,5 @@
 .Row {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  display: flex;
   grid-column: 1 / span 12;
   text-align: center;
 }

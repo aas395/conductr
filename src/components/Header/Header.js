@@ -3,13 +3,27 @@ import './Header.css';
 import '../../assets/images/header-img-demo.png';
 
 class Header extends Component {
+  constructor(){
+    super();
+    this.state = {
+      id: "B",
+      components: [
+      ]
+    }
+  }
+
+
   render() {
+    let className = "Header"
+    if (this.state.id.toUpperCase() == this.props.selected.toUpperCase()) {className = className +" selected"}
+
     return (
-      <div className="Header">
+      <div className={className}>
         <div  className="wrapper-text">
           <h1 className="title">CONDUCTR</h1>
           <h4 className="sub-title">IBM API connect</h4>
         </div>
+        {this.props.showLabels ? <div className="label">{this.state.id}</div> : null}
       </div>
     );
   }
